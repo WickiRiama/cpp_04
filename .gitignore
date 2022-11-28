@@ -3,3 +3,5 @@
 *.d
 build/
 polymorphism
+world_on_fire
+.vscode
