@@ -1,50 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 17:17:17 by mriant            #+#    #+#             */
-/*   Updated: 2022/11/29 09:40:29 by mriant           ###   ########.fr       */
+/*   Created: 2022/11/29 09:42:12 by mriant            #+#    #+#             */
+/*   Updated: 2022/11/29 09:53:03 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-#include "AMateria.hpp"
+#include "Ice.hpp"
 
 //==============================================================================
 // Constructors
 //==============================================================================
 
-AMateria::AMateria(void) : _type("")
+Ice::Ice(void): AMateria("ice")
 {
-	std::cout << "Materia default constructor called" << std::endl;
+	std::cout << "Ice default constructor called" << std::endl;
 }
 
-AMateria::AMateria(std::string const &type) : _type(type)
+Ice::Ice(Ice const &src)
 {
-	std::cout << "Materia constructor called with type " << this->_type
-			  << std::endl;
+	*this = src;
 }
 
-AMateria::AMateria(AMateria const & rhs)
+Ice::~Ice(void)
 {
-	*this = rhs;
-	std::cout << "Materia copy constructor called" << std::endl;
-}
-
-AMateria::~AMateria(void)
-{
-	std::cout << "Materia destructor called" << std::endl;
+	std::cout << "Ice destructor called" << std::endl;
 }
 
 //==============================================================================
 // Operators
 //==============================================================================
 
-AMateria &AMateria::operator=(AMateria const &rhs)
+Ice &Ice::operator=(Ice const &rhs)
 {
 	(void) rhs;
 	return *this;
@@ -54,7 +47,13 @@ AMateria &AMateria::operator=(AMateria const &rhs)
 // Functions
 //==============================================================================
 
-void AMateria::use(ICharacter &target)
+AMateria *Ice::clone(void) const
 {
-	std::cout << "* uses a basic Materia on " << target.getName() << std::endl;
+	Ice *clonedIce = new Ice();
+	return clonedIce;
+}
+
+void Ice::use(ICharacter &target)
+{
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *";
 }

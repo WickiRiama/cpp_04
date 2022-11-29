@@ -1,50 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 17:17:17 by mriant            #+#    #+#             */
-/*   Updated: 2022/11/29 09:40:29 by mriant           ###   ########.fr       */
+/*   Created: 2022/11/29 09:56:42 by mriant            #+#    #+#             */
+/*   Updated: 2022/11/29 09:58:30 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-#include "AMateria.hpp"
+#include "Cure.hpp"
 
 //==============================================================================
 // Constructors
 //==============================================================================
 
-AMateria::AMateria(void) : _type("")
+Cure::Cure(void): AMateria("cure")
 {
-	std::cout << "Materia default constructor called" << std::endl;
+	std::cout << "Cure default constructor called" << std::endl;
 }
 
-AMateria::AMateria(std::string const &type) : _type(type)
+Cure::Cure(Cure const &src)
 {
-	std::cout << "Materia constructor called with type " << this->_type
-			  << std::endl;
+	*this = src;
 }
 
-AMateria::AMateria(AMateria const & rhs)
+Cure::~Cure(void)
 {
-	*this = rhs;
-	std::cout << "Materia copy constructor called" << std::endl;
-}
-
-AMateria::~AMateria(void)
-{
-	std::cout << "Materia destructor called" << std::endl;
+	std::cout << "Cure destructor called" << std::endl;
 }
 
 //==============================================================================
 // Operators
 //==============================================================================
 
-AMateria &AMateria::operator=(AMateria const &rhs)
+Cure &Cure::operator=(Cure const &rhs)
 {
 	(void) rhs;
 	return *this;
@@ -54,7 +47,13 @@ AMateria &AMateria::operator=(AMateria const &rhs)
 // Functions
 //==============================================================================
 
-void AMateria::use(ICharacter &target)
+AMateria *Cure::clone(void) const
 {
-	std::cout << "* uses a basic Materia on " << target.getName() << std::endl;
+	Cure *clonedCure = new Cure();
+	return clonedCure;
+}
+
+void Cure::use(ICharacter &target)
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *";
 }

@@ -6,7 +6,7 @@
 #    By: mriant <mriant@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 13:15:05 by mriant            #+#    #+#              #
-#    Updated: 2022/11/28 17:17:50 by mriant           ###   ########.fr        #
+#    Updated: 2022/11/29 09:42:44 by mriant           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = materias
 
 SRCS = ${addprefix srcs/, \
 	AMateria.cpp \
+	Ice.hpp \
 	main.cpp}
 
 OBJS = ${SRCS:srcs/%.cpp=build/%.o}
