@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:43:05 by mriant            #+#    #+#             */
-/*   Updated: 2022/11/29 15:35:41 by mriant           ###   ########.fr       */
+/*   Updated: 2022/11/29 18:18:50 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ Character::Character(Character const &src)
 Character::~Character(void)
 {
 	std::cout << "Character destrutor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		delete this->_inventory[i];
+	}
 }
 
 //==============================================================================
@@ -57,7 +61,11 @@ Character &Character::operator=(Character const &rhs)
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			*this->_inventory[i] = rhs.getMateria(i);
+			delete this->_inventory[i];
+		}
+		for (int i = 0; i < 4; i++)
+		{
+			this->_inventory[i] = rhs.getMateria(i)->clone();
 		}
 	}
 	return *this;
@@ -106,11 +114,23 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter &target)
 {
-	if (idx >= 0 && idx <= 4)
+	if (idx >= 0 && idx <= 3)
 	{
 		this->_inventory[idx]->use(target);
 	}
 	else
 		std::cout << "There is no slot " << idx << " in the inventory"
 				  << std::endl;
+}
+
+AMateria *Character::getMateria(int idx) const
+{
+	if (idx >= 0 && idx <= 3)
+		return this->_inventory[idx];
+	else
+	{
+		std::cout << "There is no slot " << idx << " in the inventory"
+				  << std::endl;
+		return NULL;
+	}
 }

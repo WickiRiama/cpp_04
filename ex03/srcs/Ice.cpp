@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 09:42:12 by mriant            #+#    #+#             */
-/*   Updated: 2022/11/29 09:53:03 by mriant           ###   ########.fr       */
+/*   Updated: 2022/11/29 18:21:01 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // Constructors
 //==============================================================================
 
-Ice::Ice(void): AMateria("ice")
+Ice::Ice(void) : AMateria("ice")
 {
 	std::cout << "Ice default constructor called" << std::endl;
 }
@@ -39,7 +39,7 @@ Ice::~Ice(void)
 
 Ice &Ice::operator=(Ice const &rhs)
 {
-	(void) rhs;
+	(void)rhs;
 	return *this;
 }
 
@@ -55,5 +55,6 @@ AMateria *Ice::clone(void) const
 
 void Ice::use(ICharacter &target)
 {
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *";
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *"
+			  << std::endl;
 }

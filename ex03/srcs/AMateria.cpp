@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 17:17:17 by mriant            #+#    #+#             */
-/*   Updated: 2022/11/29 09:40:29 by mriant           ###   ########.fr       */
+/*   Updated: 2022/11/29 18:19:27 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ AMateria::AMateria(std::string const &type) : _type(type)
 			  << std::endl;
 }
 
-AMateria::AMateria(AMateria const & rhs)
+AMateria::AMateria(AMateria const &rhs)
 {
 	*this = rhs;
 	std::cout << "Materia copy constructor called" << std::endl;
@@ -46,13 +46,18 @@ AMateria::~AMateria(void)
 
 AMateria &AMateria::operator=(AMateria const &rhs)
 {
-	(void) rhs;
+	(void)rhs;
 	return *this;
 }
 
 //==============================================================================
 // Functions
 //==============================================================================
+
+std::string const &AMateria::getType(void) const
+{
+	return this->_type;
+}
 
 void AMateria::use(ICharacter &target)
 {

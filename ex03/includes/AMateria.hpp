@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 16:54:32 by mriant            #+#    #+#             */
-/*   Updated: 2022/11/29 09:39:32 by mriant           ###   ########.fr       */
+/*   Updated: 2022/11/29 18:12:17 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define AMATERIA_HPP
 
 # include <string>
+
+#include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria
 {
@@ -24,7 +28,7 @@ protected:
 public:
 	AMateria(std::string const &type);
 	AMateria(AMateria const &src);
-	~AMateria(void);
+	virtual ~AMateria(void);
 
 	AMateria &operator=(AMateria const &rhs);
 
