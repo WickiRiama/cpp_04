@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 17:24:27 by mriant            #+#    #+#             */
-/*   Updated: 2022/11/29 18:13:08 by mriant           ###   ########.fr       */
+/*   Updated: 2022/12/05 12:37:28 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ MateriaSource::~MateriaSource(void)
 {
 	std::cout << "MateriaSource destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
+	{
 		delete this->_source[i];
+		this->_source[i] = NULL;
+	}
 }
 
 //==============================================================================

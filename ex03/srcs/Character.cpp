@@ -6,7 +6,7 @@
 /*   By: mriant <mriant@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 11:43:05 by mriant            #+#    #+#             */
-/*   Updated: 2022/11/29 18:18:50 by mriant           ###   ########.fr       */
+/*   Updated: 2022/12/05 12:54:42 by mriant           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 // Constructors
 //==============================================================================
 
-Character::Character(void): ICharacter(), _name("")
+Character::Character(void) : ICharacter(), _name("")
 {
 	for (int i = 0; i < 4; i++)
-		{
-			this->_inventory[i] = NULL;
-		}
+	{
+		this->_inventory[i] = NULL;
+	}
 	std::cout << "Character default constructor called" << std::endl;
 }
 
@@ -33,12 +33,17 @@ Character::Character(std::string name) : ICharacter(), _name(name)
 	{
 		this->_inventory[i] = NULL;
 	}
-	std::cout << "Character default constructor called" << std::endl;
+	std::cout << "Character constructor called with name " << this->_name
+			  << std::endl;
 }
 
-Character::Character(Character const &src)
+Character::Character(Character const &src): _name(src.getName() + "_copy")
 {
 	std::cout << "Character copy constructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+	{
+		this->_inventory[i] = NULL;
+	}
 	*this = src;
 }
 
@@ -48,6 +53,7 @@ Character::~Character(void)
 	for (int i = 0; i < 4; i++)
 	{
 		delete this->_inventory[i];
+		this->_inventory[i] = NULL;
 	}
 }
 
@@ -65,7 +71,8 @@ Character &Character::operator=(Character const &rhs)
 		}
 		for (int i = 0; i < 4; i++)
 		{
-			this->_inventory[i] = rhs.getMateria(i)->clone();
+			if (rhs.getMateria(i))
+				this->_inventory[i] = rhs.getMateria(i)->clone();
 		}
 	}
 	return *this;
@@ -84,7 +91,7 @@ void Character::equip(AMateria *m)
 {
 	int i = 0;
 
-	while (this->_inventory[i])
+	while (i < 4 && this->_inventory[i])
 	{
 		i++;
 	}
@@ -114,7 +121,7 @@ void Character::unequip(int idx)
 
 void Character::use(int idx, ICharacter &target)
 {
-	if (idx >= 0 && idx <= 3)
+	if (idx >= 0 && idx <= 3 && this->_inventory[idx])
 	{
 		this->_inventory[idx]->use(target);
 	}
